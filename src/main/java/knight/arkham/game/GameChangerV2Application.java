@@ -41,7 +41,7 @@ public class GameChangerV2Application {
 
             videoGameService.saveVideoGame(videoGame);
 
-            openIndexPage();
+//            openIndexPage();
         };
     }
 }
