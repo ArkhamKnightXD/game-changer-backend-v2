@@ -25,7 +25,7 @@ public class VideoGameRestController {
 
     @GetMapping("/games")
     @Operation(summary = "Get All Video Games", description = "Consigue la lista de todos los videojuegos")
-    public ResponseEntity<List<VideoGame>> createClasses() {
+    public ResponseEntity<List<VideoGame>> getAllVideoGames() {
 
         List<VideoGame> videoGameList = videoGameService.getAllVideoGames();
 

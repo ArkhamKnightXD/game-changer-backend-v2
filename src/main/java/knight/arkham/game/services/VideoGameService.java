@@ -25,4 +25,10 @@ public class VideoGameService {
 
         videoGameRepository.save(videoGameToSave);
     }
+
+
+    public void saveAllVideoGames(List<VideoGame> videoGamesToSave) {
+
+        videoGameRepository.saveAll(videoGamesToSave);
+    }
 }
