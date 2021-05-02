@@ -21,14 +21,38 @@ public class VideoGameService {
     }
 
 
+    public VideoGame getVideoGameById(long videoGameId) {
+
+        return videoGameRepository.findVideoGameById(videoGameId);
+    }
+
+
     public void saveVideoGame(VideoGame videoGameToSave) {
 
         videoGameRepository.save(videoGameToSave);
     }
 
 
+    public void updateVideoGame(VideoGame updatedVideoGame) {
+
+        VideoGame originalVideoGame = videoGameRepository.findVideoGameById(updatedVideoGame.getId());
+
+        originalVideoGame.setGameModes(updatedVideoGame.getGameModes());
+        originalVideoGame.setDeveloper(updatedVideoGame.getDeveloper());
+        originalVideoGame.setGenre(updatedVideoGame.getGenre());
+
+        videoGameRepository.save(originalVideoGame);
+    }
+
+
     public void saveAllVideoGames(List<VideoGame> videoGamesToSave) {
 
         videoGameRepository.saveAll(videoGamesToSave);
+    }
+
+
+    public void deleteVideoGameById(long videoGameId){
+
+        videoGameRepository.deleteById(videoGameId);
     }
 }

@@ -71,7 +71,7 @@ public class GameChangerV2Application {
 
             videoGameService.saveAllVideoGames(videoGameList);
 
-            openIndexPage();
+//            openIndexPage();
         };
     }
 }
