@@ -24,7 +24,7 @@ public class VideoGameRestController {
     @Operation(summary = "Get All Video Games", description = "Consigue la lista de todos los videojuegos")
     public ResponseEntity<List<VideoGame>> getAllVideoGames() {
 
-        List<VideoGame> videoGameList = videoGameService.getAllVideoGames();
+        var videoGameList = videoGameService.getAllVideoGames();
 
         return new ResponseEntity<>(videoGameList, HttpStatus.OK);
     }
@@ -34,7 +34,7 @@ public class VideoGameRestController {
     @Operation(summary = "Get A Video Game By Id", description = "Retorna un videojuego con el id correspondiente")
     public ResponseEntity<VideoGame> getVideoGameById(@PathVariable long videoGameId) {
 
-        VideoGame videoGameToGet = videoGameService.getVideoGameById(videoGameId);
+        var videoGameToGet = videoGameService.getVideoGameById(videoGameId);
 
         return new ResponseEntity<>(videoGameToGet, HttpStatus.OK);
     }

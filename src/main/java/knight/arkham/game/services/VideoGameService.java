@@ -35,7 +35,7 @@ public class VideoGameService {
 
     public void updateVideoGame(VideoGame updatedVideoGame) {
 
-        VideoGame originalVideoGame = videoGameRepository.findVideoGameById(updatedVideoGame.getId());
+        var originalVideoGame = videoGameRepository.findVideoGameById(updatedVideoGame.getId());
 
         originalVideoGame.setGameModes(updatedVideoGame.getGameModes());
         originalVideoGame.setDeveloper(updatedVideoGame.getDeveloper());
