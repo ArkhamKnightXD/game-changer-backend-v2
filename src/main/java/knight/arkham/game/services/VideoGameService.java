@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public class VideoGameService {
 
-    final VideoGameRepository videoGameRepository;
+    private final VideoGameRepository videoGameRepository;
 
     public VideoGameService(VideoGameRepository videoGameRepository) {
         this.videoGameRepository = videoGameRepository;
@@ -33,21 +33,22 @@ public class VideoGameService {
     }
 
 
-    public void updateVideoGame(VideoGame updatedVideoGame) {
-
-        var originalVideoGame = videoGameRepository.findVideoGameById(updatedVideoGame.getId());
-
-        originalVideoGame.setGameModes(updatedVideoGame.getGameModes());
-        originalVideoGame.setDeveloper(updatedVideoGame.getDeveloper());
-        originalVideoGame.setGenre(updatedVideoGame.getGenre());
-
-        videoGameRepository.save(originalVideoGame);
-    }
-
-
     public void saveAllVideoGames(List<VideoGame> videoGamesToSave) {
 
         videoGameRepository.saveAll(videoGamesToSave);
+    }
+
+
+    public void updateVideoGame(VideoGame updatedVideoGame) {
+
+        var actualVideoGame = videoGameRepository.findVideoGameById(updatedVideoGame.getId());
+
+        actualVideoGame.setName(updatedVideoGame.getName());
+        actualVideoGame.setGameModes(updatedVideoGame.getGameModes());
+        actualVideoGame.setDeveloper(updatedVideoGame.getDeveloper());
+        actualVideoGame.setGenre(updatedVideoGame.getGenre());
+
+        videoGameRepository.save(actualVideoGame);
     }
 
 

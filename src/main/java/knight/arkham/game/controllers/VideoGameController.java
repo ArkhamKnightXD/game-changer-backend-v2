@@ -8,14 +8,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/v1")
 @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
-public class VideoGameRestController {
+@RequestMapping("/api/v1")
+@RestController
+public class VideoGameController {
 
-    final VideoGameService videoGameService;
+    private final VideoGameService videoGameService;
 
-    public VideoGameRestController(VideoGameService videoGameService) {
+    public VideoGameController(VideoGameService videoGameService) {
         this.videoGameService = videoGameService;
     }
 
@@ -28,7 +28,7 @@ public class VideoGameRestController {
     }
 
 
-    @GetMapping("/get-video-game-by/{videoGameId}")
+    @GetMapping("/video-games/{videoGameId}")
     @Operation(summary = "Get A Video Game By Id", description = "Retorna un videojuego con el id correspondiente")
     public ResponseEntity<VideoGame> getVideoGameById(@PathVariable long videoGameId) {
 
@@ -36,7 +36,7 @@ public class VideoGameRestController {
     }
 
 
-    @PostMapping("/save-video-game")
+    @PostMapping("/video-games")
     @Operation(summary = "Save Video Game", description = "Guarda El videojuego enviado")
     public ResponseEntity<String> saveVideoGame(@RequestBody VideoGame videoGameToSave) {
 
@@ -46,8 +46,8 @@ public class VideoGameRestController {
     }
 
 
-    @PutMapping("/update-video-game")
-    @Operation(summary = "Save Video Game", description = "Guarda El videojuego enviado")
+    @PutMapping("/video-games")
+    @Operation(summary = "Update Video Game", description = "Actualiza el videojuego enviado")
     public ResponseEntity<String> updateVideoGame(@RequestBody VideoGame updatedVideoGame) {
 
         videoGameService.updateVideoGame(updatedVideoGame);
@@ -56,7 +56,7 @@ public class VideoGameRestController {
     }
 
 
-    @DeleteMapping("/delete-video-game-by/{videoGameId}")
+    @DeleteMapping("/video-games/{videoGameId}")
     @Operation(summary = "Get A Video Game By Id", description = "Elimina un videojuego con el id correspondiente")
     public ResponseEntity<String> deleteVideoGameById(@PathVariable long videoGameId) {
 

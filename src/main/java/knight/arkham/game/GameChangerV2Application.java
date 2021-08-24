@@ -8,7 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,17 +18,6 @@ public class GameChangerV2Application {
 
     public static void main(String[] args) {
         SpringApplication.run(GameChangerV2Application.class, args);
-    }
-
-
-    private void openIndexPage() {
-
-        Runtime runtime = Runtime.getRuntime();
-        try {
-            runtime.exec("rundll32 url.dll,FileProtocolHandler " + "http://localhost:88/swagger.html");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 
@@ -62,8 +50,6 @@ public class GameChangerV2Application {
             videoGameList.add(videoGame9);
 
             videoGameService.saveAllVideoGames(videoGameList);
-
-            openIndexPage();
         };
     }
 }
