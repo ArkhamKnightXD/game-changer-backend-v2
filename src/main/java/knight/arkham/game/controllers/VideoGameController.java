@@ -32,12 +32,17 @@ public class VideoGameController {
     @Operation(summary = "Get A Video Game By Id", description = "Retorna un videojuego con el id correspondiente")
     public ResponseEntity<VideoGame> getVideoGameById(@PathVariable long videoGameId) {
 
-        return new ResponseEntity<>(videoGameService.getVideoGameById(videoGameId), HttpStatus.OK);
+        var actualVideoGame = videoGameService.getVideoGameById(videoGameId);
+
+        if (actualVideoGame != null)
+            return new ResponseEntity<>(actualVideoGame, HttpStatus.OK);
+
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
 
     @PostMapping("/video-games")
-    @Operation(summary = "Save Video Game", description = "Guarda El videojuego enviado")
+    @Operation(summary = "Save Video Game", description = "Crear videojuego")
     public ResponseEntity<String> saveVideoGame(@RequestBody VideoGame videoGameToSave) {
 
         videoGameService.saveVideoGame(videoGameToSave);
@@ -57,11 +62,18 @@ public class VideoGameController {
 
 
     @DeleteMapping("/video-games/{videoGameId}")
-    @Operation(summary = "Get A Video Game By Id", description = "Elimina un videojuego con el id correspondiente")
+    @Operation(summary = "Delete A Video Game By Id", description = "Elimina un videojuego con el id correspondiente")
     public ResponseEntity<String> deleteVideoGameById(@PathVariable long videoGameId) {
 
-        videoGameService.deleteVideoGameById(videoGameId);
+        var videoGameToDelete = videoGameService.getVideoGameById(videoGameId);
 
-        return new ResponseEntity<>("Video Game Deleted", HttpStatus.OK);
+        if (videoGameToDelete != null){
+
+            videoGameService.deleteVideoGameById(videoGameId);
+
+            return new ResponseEntity<>("Video Game Deleted", HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>("Video Game Not Found", HttpStatus.NOT_FOUND);
     }
 }
