@@ -43,37 +43,30 @@ public class VideoGameController {
 
     @PostMapping("/video-games")
     @Operation(summary = "Save Video Game", description = "Crear videojuego")
-    public ResponseEntity<String> saveVideoGame(@RequestBody VideoGame videoGameToSave) {
+    public ResponseEntity<List<VideoGame>> saveVideoGame(@RequestBody VideoGame videoGameToSave) {
 
-        videoGameService.saveVideoGame(videoGameToSave);
+        var videoGames= videoGameService.saveVideoGame(videoGameToSave);
 
-        return new ResponseEntity<>("Video Game Saved", HttpStatus.OK);
+        return new ResponseEntity<>(videoGames, HttpStatus.OK);
     }
 
 
     @PutMapping("/video-games")
     @Operation(summary = "Update Video Game", description = "Actualiza el videojuego enviado")
-    public ResponseEntity<String> updateVideoGame(@RequestBody VideoGame updatedVideoGame) {
+    public ResponseEntity<List<VideoGame>> updateVideoGame(@RequestBody VideoGame updatedVideoGame) {
 
-        videoGameService.updateVideoGame(updatedVideoGame);
+        var videoGames = videoGameService.updateVideoGame(updatedVideoGame);
 
-        return new ResponseEntity<>("Video Game Updated", HttpStatus.OK);
+        return new ResponseEntity<>(videoGames, HttpStatus.OK);
     }
 
 
     @DeleteMapping("/video-games/{videoGameId}")
     @Operation(summary = "Delete A Video Game By Id", description = "Elimina un videojuego con el id correspondiente")
-    public ResponseEntity<String> deleteVideoGameById(@PathVariable long videoGameId) {
+    public ResponseEntity<List<VideoGame>> deleteVideoGameById(@PathVariable long videoGameId) {
 
-        var videoGameToDelete = videoGameService.getVideoGameById(videoGameId);
+        videoGameService.deleteVideoGameById(videoGameId);
 
-        if (videoGameToDelete != null){
-
-            videoGameService.deleteVideoGameById(videoGameId);
-
-            return new ResponseEntity<>("Video Game Deleted", HttpStatus.OK);
-        }
-
-        return new ResponseEntity<>("Video Game Not Found", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(videoGameService.getAllVideoGames(), HttpStatus.OK);
     }
 }

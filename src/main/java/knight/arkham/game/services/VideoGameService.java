@@ -27,9 +27,11 @@ public class VideoGameService {
     }
 
 
-    public void saveVideoGame(VideoGame videoGameToSave) {
+    public List<VideoGame> saveVideoGame(VideoGame videoGameToSave) {
 
         videoGameRepository.save(videoGameToSave);
+
+        return videoGameRepository.findAll();
     }
 
 
@@ -39,7 +41,7 @@ public class VideoGameService {
     }
 
 
-    public void updateVideoGame(VideoGame updatedVideoGame) {
+    public List<VideoGame> updateVideoGame(VideoGame updatedVideoGame) {
 
         var actualVideoGame = videoGameRepository.findVideoGameById(updatedVideoGame.getId());
 
@@ -49,11 +51,19 @@ public class VideoGameService {
         actualVideoGame.setGenre(updatedVideoGame.getGenre());
 
         videoGameRepository.save(actualVideoGame);
+
+        return videoGameRepository.findAll();
     }
 
 
     public void deleteVideoGameById(long videoGameId){
 
-        videoGameRepository.deleteById(videoGameId);
+        try {
+
+            videoGameRepository.deleteById(videoGameId);
+        }catch (Exception exception){
+
+            System.out.println(exception.getMessage());
+        }
     }
 }
