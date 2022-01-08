@@ -2,6 +2,10 @@ package knight.arkham.game.services;
 
 import knight.arkham.game.models.VideoGame;
 import knight.arkham.game.repositories.VideoGameRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -12,6 +16,20 @@ public class VideoGameService {
 
     public VideoGameService(VideoGameRepository videoGameRepository) {
         this.videoGameRepository = videoGameRepository;
+    }
+
+
+    public Page<VideoGame> getAllVideoGamesWithPagination(int pageSize, String sortIdentifier, boolean isAscending) {
+
+        Pageable paginationData;
+
+        if (isAscending)
+            paginationData = PageRequest.of(0, pageSize, Sort.by(sortIdentifier).ascending());
+
+        else
+            paginationData = PageRequest.of(0, pageSize, Sort.by(sortIdentifier).descending());
+
+        return videoGameRepository.findAll(paginationData);
     }
 
 

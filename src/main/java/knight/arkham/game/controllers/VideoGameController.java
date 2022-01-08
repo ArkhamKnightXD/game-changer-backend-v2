@@ -3,6 +3,7 @@ package knight.arkham.game.controllers;
 import io.swagger.v3.oas.annotations.Operation;
 import knight.arkham.game.models.VideoGame;
 import knight.arkham.game.services.VideoGameService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,14 @@ public class VideoGameController {
 
     public VideoGameController(VideoGameService videoGameService) {
         this.videoGameService = videoGameService;
+    }
+
+
+    @GetMapping("/video-games/pagination/{pageSize}/{sortIdentifier}/{isAscending}")
+    @Operation(summary = "Get All Video Games With Pagination", description = "Consigue la lista de todos los videojuegos con paginacion")
+    public ResponseEntity<Page<VideoGame>> getAllVideoGamesWithPagination(@PathVariable int pageSize, @PathVariable String sortIdentifier, @PathVariable boolean isAscending) {
+
+        return new ResponseEntity<>(videoGameService.getAllVideoGamesWithPagination(pageSize, sortIdentifier, isAscending), HttpStatus.OK);
     }
 
 
