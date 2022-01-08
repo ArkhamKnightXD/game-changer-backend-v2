@@ -1,5 +1,6 @@
 package knight.arkham.game.models;
 
+import knight.arkham.game.enums.Genre;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
@@ -21,16 +22,16 @@ public class VideoGame implements Serializable {
     private String name;
     private String developer;
     private Date releasedDate;
-    private String genre;
+    private Genre genre;
     private int unitsSold;
     private String gameModes;
-    private float rating;
+    private int rating;
     private float sellPrice;
     private String image;
     private int stock;
 
     //dejo este constructor pues si defino el allArgsconstructor de lombok me da error ya que pide el id y aqui no pido id ni quiero hacerlo
-    public VideoGame(String name, String developer, Date releasedDate, String genre, int unitsSold, String gameModes, float rating, float sellPrice, String image, int stock) {
+    public VideoGame(String name, String developer, Date releasedDate, Genre genre, int unitsSold, String gameModes, int rating, float sellPrice, String image, int stock) {
         this.name = name;
         this.developer = developer;
         this.releasedDate = releasedDate;

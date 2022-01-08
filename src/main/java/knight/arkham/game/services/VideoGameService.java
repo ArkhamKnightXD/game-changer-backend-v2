@@ -67,6 +67,8 @@ public class VideoGameService {
         actualVideoGame.setGameModes(updatedVideoGame.getGameModes());
         actualVideoGame.setDeveloper(updatedVideoGame.getDeveloper());
         actualVideoGame.setGenre(updatedVideoGame.getGenre());
+        actualVideoGame.setSellPrice(updatedVideoGame.getSellPrice());
+        actualVideoGame.setStock(updatedVideoGame.getStock());
 
         videoGameRepository.save(actualVideoGame);
 
