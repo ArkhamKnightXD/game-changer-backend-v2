@@ -1,6 +1,6 @@
 package knight.arkham.game.services;
 
-import knight.arkham.game.models.VideoGame;
+import knight.arkham.game.entities.VideoGame;
 import knight.arkham.game.repositories.VideoGameRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

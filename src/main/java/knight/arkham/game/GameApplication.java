@@ -1,7 +1,7 @@
 package knight.arkham.game;
 
 import knight.arkham.game.enums.Genre;
-import knight.arkham.game.models.VideoGame;
+import knight.arkham.game.entities.VideoGame;
 import knight.arkham.game.services.VideoGameService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

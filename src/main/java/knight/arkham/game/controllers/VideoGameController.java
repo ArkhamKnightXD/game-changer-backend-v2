@@ -1,7 +1,7 @@
 package knight.arkham.game.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
-import knight.arkham.game.models.VideoGame;
+import knight.arkham.game.entities.VideoGame;
 import knight.arkham.game.services.VideoGameService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;

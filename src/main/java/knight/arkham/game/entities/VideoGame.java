@@ -1,4 +1,4 @@
-package knight.arkham.game.models;
+package knight.arkham.game.entities;
 
 import knight.arkham.game.enums.Genre;
 import lombok.Data;
