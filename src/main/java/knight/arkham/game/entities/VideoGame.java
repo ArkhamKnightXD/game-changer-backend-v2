@@ -15,8 +15,9 @@ import java.util.Date;
 @Entity
 public class VideoGame implements Serializable {
 
+    //Si hay solo una tabla se recomienda usar auto para evitar errores con los id
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
