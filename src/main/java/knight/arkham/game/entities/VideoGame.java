@@ -31,8 +31,11 @@ public class VideoGame implements Serializable {
     private String image;
     private int stock;
 
-    //dejo este constructor pues si defino el allArgsconstructor de lombok me da error ya que pide el id y aqui no pido id ni quiero hacerlo
-    public VideoGame(String name, String developer, Date releasedDate, Genre genre, int unitsSold, String gameModes, int rating, float sellPrice, String image, int stock) {
+    //dejo este constructor pues si defino el AllArgsConstructor de lombok me da error, ya que pide él, id y aqui
+    // no pido id ni quiero hacerlo
+    public VideoGame(String name, String developer, Date releasedDate, Genre genre, int unitsSold, String gameModes,
+                     int rating, float sellPrice, String image, int stock) {
+
         this.name = name;
         this.developer = developer;
         this.releasedDate = releasedDate;

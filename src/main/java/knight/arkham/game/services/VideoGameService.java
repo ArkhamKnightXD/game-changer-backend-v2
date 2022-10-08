@@ -19,7 +19,7 @@ public class VideoGameService {
     }
 
 
-    public Page<VideoGame> getAllVideoGamesWithPagination(int pageSize, String sortIdentifier, boolean isAscending) {
+    public Page<VideoGame> getAllWithPagination(int pageSize, String sortIdentifier, boolean isAscending) {
 
         Pageable paginationData;
 
@@ -33,19 +33,19 @@ public class VideoGameService {
     }
 
 
-    public List<VideoGame> getAllVideoGames() {
+    public List<VideoGame> getAll() {
 
         return videoGameRepository.findAll();
     }
 
 
-    public VideoGame getVideoGameById(long videoGameId) {
+    public VideoGame getById(long videoGameId) {
 
         return videoGameRepository.findVideoGameById(videoGameId);
     }
 
 
-    public List<VideoGame> saveVideoGame(VideoGame videoGameToSave) {
+    public List<VideoGame> save(VideoGame videoGameToSave) {
 
         videoGameRepository.save(videoGameToSave);
 
@@ -53,13 +53,13 @@ public class VideoGameService {
     }
 
 
-    public void saveAllVideoGames(List<VideoGame> videoGamesToSave) {
+    public void saveAll(List<VideoGame> videoGamesToSave) {
 
         videoGameRepository.saveAll(videoGamesToSave);
     }
 
 
-    public List<VideoGame> updateVideoGame(VideoGame updatedVideoGame) {
+    public List<VideoGame> update(VideoGame updatedVideoGame) {
 
         var actualVideoGame = videoGameRepository.findVideoGameById(updatedVideoGame.getId());
 
@@ -76,7 +76,7 @@ public class VideoGameService {
     }
 
 
-    public void deleteVideoGameById(long videoGameId){
+    public void deleteById(long videoGameId){
 
         try {
 

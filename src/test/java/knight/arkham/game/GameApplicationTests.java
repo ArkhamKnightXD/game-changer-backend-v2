@@ -11,5 +11,4 @@ class GameApplicationTests {
 
         System.out.println("Test");
     }
-
 }
