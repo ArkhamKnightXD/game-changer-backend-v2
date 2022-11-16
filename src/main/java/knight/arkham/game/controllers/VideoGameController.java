@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
-@RequestMapping("/api/v1")
+@CrossOrigin(origins = "*")
+@RequestMapping("/api/v1/games/")
 @RestController
 public class VideoGameController {
 
@@ -21,15 +21,15 @@ public class VideoGameController {
     }
 
 
-    @GetMapping("/video-games/pagination/{pageSize}/{sortIdentifier}/{isAscending}")
-    @Operation(summary = "Get All Video Games With Pagination", description = "Consigue la lista de todos los videojuegos con paginacion")
+    @GetMapping("pagination/{pageSize}/{sortIdentifier}/{isAscending}")
+    @Operation(summary = "Get All Video Games With Pagination", description = "Consigue la lista de todos los videojuegos con paginación")
     public ResponseEntity<Page<VideoGame>> getAllVideoGamesWithPagination(@PathVariable int pageSize, @PathVariable String sortIdentifier, @PathVariable boolean isAscending) {
 
         return new ResponseEntity<>(videoGameService.getAllWithPagination(pageSize, sortIdentifier, isAscending), HttpStatus.OK);
     }
 
 
-    @GetMapping("/video-games")
+    @GetMapping
     @Operation(summary = "Get All Video Games", description = "Consigue la lista de todos los videojuegos")
     public ResponseEntity<List<VideoGame>> getAllVideoGames() {
 
@@ -37,7 +37,7 @@ public class VideoGameController {
     }
 
 
-    @GetMapping("/video-games/{videoGameId}")
+    @GetMapping("{videoGameId}")
     @Operation(summary = "Get A Video Game By Id", description = "Retorna un videojuego con el id correspondiente")
     public ResponseEntity<VideoGame> getVideoGameById(@PathVariable long videoGameId) {
 
@@ -50,7 +50,7 @@ public class VideoGameController {
     }
 
 
-    @PostMapping("/video-games")
+    @PostMapping
     @Operation(summary = "Save Video Game", description = "Crear videojuego")
     public ResponseEntity<List<VideoGame>> saveVideoGame(@RequestBody VideoGame videoGameToSave) {
 
@@ -60,7 +60,7 @@ public class VideoGameController {
     }
 
 
-    @PutMapping("/video-games")
+    @PutMapping
     @Operation(summary = "Update Video Game", description = "Actualiza el videojuego enviado")
     public ResponseEntity<List<VideoGame>> updateVideoGame(@RequestBody VideoGame updatedVideoGame) {
 
@@ -70,7 +70,7 @@ public class VideoGameController {
     }
 
 
-    @DeleteMapping("/video-games/{videoGameId}")
+    @DeleteMapping("{videoGameId}")
     @Operation(summary = "Delete A Video Game By Id", description = "Elimina un videojuego con el id correspondiente")
     public ResponseEntity<List<VideoGame>> deleteVideoGameById(@PathVariable long videoGameId) {
 
